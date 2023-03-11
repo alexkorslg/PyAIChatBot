@@ -32,7 +32,6 @@ async def send(message: types.Message):
         messages=ai_messages
     )
 
-    # print(messages)
     await message.answer(response['choices'][0]['message']['content'])
 
 executor.start_polling(dp, skip_updates=True)
