@@ -14,12 +14,12 @@ dp = Dispatcher(bot)
 bot_chats = {}
 ai_messages = [
     {'role': 'system',
-     'content': 'You are a helpful assistant for user <NAME>.'},
+     'content': 'You are a helpful assistant for user {name}.'},
     {'role': 'user',
-     'content': 'Hi. My name is <NAME>.'},
+     'content': 'Hi. My name is {name}.'},
     {'role': 'assistant',
-     'content': 'You wrote that your name is <NAME>. '
-                'So I will call you that. Glad to help, <NAME>!'}
+     'content': 'You wrote that your name is {name}. '
+                'So I will call you that. Glad to help, {name}!'}
 ]
 
 
@@ -29,7 +29,7 @@ def update_chat(user_id, user_name, role, content):
         for message in ai_messages:
             bot_chats[user_id].append(
                 {'role': message['role'],
-                 'content': message['content'].replace('<NAME>', user_name)}
+                 'content': message['content'].format(name=user_name)}
             )
 
     bot_chats[user_id].append({'role': role, 'content': content})
